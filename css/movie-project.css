@@ -1,0 +1,37 @@
+#header-img {
+    width: 100%;
+    object-fit: cover;
+    opacity: .7
+
+}
+
+h1 {
+    color: #ffd500;
+    text-shadow: 0 0 3px #343434, 0 0 5px #343434;
+    font-size: 5em;
+    z-index: 9999;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#movie-search {
+    z-index: 9999;
+    position: absolute;
+    top: 40%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+}
+
+#movie-search-btn {
+    z-index: 9999;
+    position: absolute;
+    top: 40%;
+    left: 59%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    position: relative;
+}
