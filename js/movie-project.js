@@ -2,21 +2,25 @@
     "use strict"
 
     // FUNCTION FOR PAGE LOAD
+    window.onload = function() {
+        var loadingScreen = document.getElementById('loading-screen');
+        var loadingCircle = document.getElementById('loader');
+        var htmlContent = document.getElementById('content');
 
-    function pageLoad() {
-        if (searchMovies) {
-            return alert('Page is loading, please be patient.....');
-        }
+        setTimeout(function() {
+        loadingCircle.style.display = 'none';
+        loadingScreen.style.display = 'none';
+        htmlContent.style.display = 'block';
+        }, 4000)
     }
-    window.addEventListener('load', pageLoad);
-    searchMovies();
+
 
     // FUNCTION TO PULL EXISTING MOVIES FROM JSON SERVER
 
-    function searchMovies() {
-        const searchInput = document.querySelector('#submit-title');
-        const submitButton = document.querySelector('#submit-movie');
-        const movieListContainer = document.querySelector('#test-push');
+    function movieInputForm() {
+        // const searchInput = document.querySelector('#submit-title');
+        // const submitButton = document.querySelector('#submit-movie');
+        // const movieListContainer = document.querySelector('#test-push');
 
         fetch('https://glitter-furtive-transport.glitch.me/movies')
             .then(response => response.json()) /* review was created successfully */
@@ -33,13 +37,13 @@
                     addHTML += "</div>"
                     addHTML += "<hr>"
                     $('#test-push').html(addHTML);
-
                 }
-                window.removeEventListener('load', pageLoad);
 
             })
             .catch(error => console.error(error)) /* handle errors */
     }
+    movieInputForm();
+
 
     // FUNCTION TO ADD A MOVIE
 
@@ -88,15 +92,16 @@
 
     // FUNCTION TO DELETE MOVIE
 
-    function deleteMovie(id) {
-        fetch('https://glitter-furtive-transport.glitch.me/movies' + id, {
-            method: "DELETE"
-        })
-            .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
-                .then(response => response.json())
-                .then(() => searchMovies()))
-    }
-    deleteMovie()
+    // function deleteMovie(id) {
+    //     fetch('https://glitter-furtive-transport.glitch.me/movies' + id, {
+    //         method: "DELETE"
+    //     })
+    //         .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+    //             .then(response => response.json())
+    //             .then(() => movieInputForm()))
+    // }
+    // deleteMovie()
+
 })();
 
 
