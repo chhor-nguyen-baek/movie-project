@@ -13,7 +13,7 @@
             loadingCircle.style.display = 'none';
             loadingScreen.style.display = 'none';
             htmlContent.style.display = 'block';
-        }, 3000)
+        }, 1000)
     }
 
 
@@ -31,12 +31,11 @@
                 const url = 'https://glitter-furtive-transport.glitch.me/movies/';
                 var addHTML = "";
                 for (let i = 0; i < movieList; i++) {
-                    addHTML += "<div class='w-25 card col-6 my-3 mx-4 movie-card'>"
-                    addHTML += "<h5>Title: " + data[i].title + "</h5><br>"
+                    addHTML += "<div class='card col-lg-6 my-3 mx-2 movie-card p-3' style='width: 300px; background-color: rgba(179,167,98,0.36)'>"
+                    addHTML += "<p><h5>Title: </h5>" + data[i].title + "</p><br>"
                     addHTML += "<h5>Director: " + data[i].director + "</h5><br>"
                     addHTML += "<h5>Rating: " + data[i].rating + "</h5><br>"
                     addHTML += "<h5>Genre: " + data[i].genre + "</h5><br>"
-                    addHTML += "<h6>ID: " + data[i].id + "</h6><br>"
                     addHTML += "<button class='delete-btn' value=" + data[i].id +">Delete</button>"
                     addHTML += "</div>"
                     addHTML += "<hr>"
