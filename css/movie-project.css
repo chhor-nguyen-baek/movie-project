@@ -80,3 +80,8 @@
 #content {
     display: none;
 }
+
+.movie-card {
+    display: flex;
+    justify-content: space-evenly;
+}
