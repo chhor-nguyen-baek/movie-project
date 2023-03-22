@@ -83,13 +83,18 @@
     var addMovieBtn = document.getElementById("new-movie-btn");
     addMovieBtn.addEventListener("click", addMovie);
 
-    // FUNCTION TO DELETE MOVIE
 
-    function deleteMovie() {
-        console.log("deleting...........");
-        var selectedID = document.querySelector('#deleteMovie')
-        const reviewObj = {};
-        const url = 'https://glitter-furtive-transport.glitch.me/movies/' + selectedID.value;
+
+    //Delete Movie Function
+    var selectedID = document.querySelector('#deleteMovie')
+    function deleteMovie(e){
+        e.preventDefault()
+        confirm("Are you sure to delete this " + selectedID.value);
+
+
+        const reviewObj = {
+        };
+        const url = 'https://glitter-furtive-transport.glitch.me/movies/'+ selectedID.value;
         const options = {
             method: 'DELETE',
             headers: {
@@ -98,13 +103,12 @@
             body: JSON.stringify(reviewObj),
         };
         fetch(url, options)
-            .then(response => console.log(response)) /* review was created successfully */
-            .then(function (deleteMovie) {
-                console.log(deleteMovie);
+            .then( response => console.log(response) ) /* review was created successfully */
+            .then (function (deleteleMovie){
+                location.reload();
             })
-            .catch(error => console.error(error)); /* handle errors */
+            .catch( error => console.error(error) ); /* handle errors */
     }
-
     var deleteBtn = document.querySelector("#removeMovie");
     deleteBtn.addEventListener("click", deleteMovie);
 
