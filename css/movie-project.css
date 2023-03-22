@@ -38,3 +38,30 @@
     margin: .7em;
     justify-content: space-around;
 }
+
+#loader {
+    display: block;
+    border: 20px solid #9b9b9b;
+    border-radius: 50%;
+    border-top: 20px solid dodgerblue;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin-top: 500px;
+    font-size: 30px;
+    text-transform: uppercase;
+    animation: spinner 4s linear infinite;
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+}
+
+#loading-screen {
+    position: fixed;
+}
+
+#content {
+    display: none;
+}
