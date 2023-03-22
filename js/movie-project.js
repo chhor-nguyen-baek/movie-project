@@ -95,19 +95,17 @@
         const reviewObj = {
         };
         const url = 'https://glitter-furtive-transport.glitch.me/movies/'+ selectedID.value;
-        const options = {
+        fetch(url, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(reviewObj),
-        };
-        fetch(url, options)
-            .then( response => console.log(response) ) /* review was created successfully */
-            .then (function (deleteleMovie){
-                location.reload();
-            })
-            .catch( error => console.error(error) ); /* handle errors */
+        })
+        fetch(url)
+            .then( response => response.json() ) /* review was created successfully */
+            .then (() => movieInputForm()); {
+            }
     }
     var deleteBtn = document.querySelector("#removeMovie");
     deleteBtn.addEventListener("click", deleteMovie);
