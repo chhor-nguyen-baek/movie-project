@@ -6,12 +6,14 @@
         var loadingScreen = document.getElementById('loading-screen');
         var loadingCircle = document.getElementById('loader');
         var htmlContent = document.getElementById('content');
+        var loadContainer = document.getElementById('loader-container');
 
         setTimeout(function() {
+        loadContainer.style.display = 'none';
         loadingCircle.style.display = 'none';
         loadingScreen.style.display = 'none';
         htmlContent.style.display = 'block';
-        }, 4000)
+        }, 3000)
     }
 
 
@@ -29,7 +31,7 @@
                 const url = 'https://glitter-furtive-transport.glitch.me/movies/';
                 var addHTML = "";
                 for (let i = 0; i < movieList; i++) {
-                    addHTML += "<div class='w-25 card col-6 my-3 mx-5'>"
+                    addHTML += "<div class='w-25 card col-6 my-3 mx-4'>"
                     addHTML += "<h5>Title: " + data[i].title + "</h5><br>"
                     addHTML += "<h5>Director: " + data[i].director + "</h5><br>"
                     addHTML += "<h5>Rating: " + data[i].rating + "</h5><br>"
@@ -74,7 +76,7 @@
             .then(function (newMovie) {
                 var addHTML = "";
                 for (let i = 0; i < newMovie.length; i++) {
-                    addHTML += "<div class='w-25 card col-6 my-3 mx-5'>"
+                    addHTML += "<div class='w-25 card col-6 my-3 mx-4'>"
                     addHTML += "<h5>Title: " + newMovie[i].title + "</h5><br>"
                     addHTML += "<h5>Director: " + newMovie[i].director + "</h5><br>"
                     addHTML += "<h5>Rating: " + newMovie[i].rating + "</h5><br>"
@@ -90,17 +92,7 @@
     addMovieBtn.addEventListener("click", addMovie);
 
     // FUNCTION TO DELETE MOVIE
-    // function deleteMovie(id) {
-    //     fetch('https://glitter-furtive-transport.glitch.me/movies' + id, {
-    //         method: "DELETE"
-    //     })
-    //         .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
-    //             .then(response => response.json())
-    //             .then(() => movieInputForm()))
-    // }
-    // deleteMovie()
 
-    //Delete Movie Function
     function deleteMovie(){
         console.log("deleting...........");
         var selectedID = document.querySelector('#deleteMovie')
@@ -116,8 +108,8 @@
         };
         fetch(url, options)
             .then( response => console.log(response) ) /* review was created successfully */
-            .then (function (deleteleMovie){
-                console.log(deleteleMovie);
+            .then (function (deleteMovie){
+                console.log(deleteMovie);
             })
             .catch( error => console.error(error) ); /* handle errors */
     }
