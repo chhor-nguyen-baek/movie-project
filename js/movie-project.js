@@ -31,21 +31,29 @@
                 const url = 'https://glitter-furtive-transport.glitch.me/movies/';
                 var addHTML = "";
                 for (let i = 0; i < movieList; i++) {
-                    addHTML += "<div class='w-25 card col-6 my-3 mx-4'>"
+                    addHTML += "<div class='w-25 card col-6 my-3 mx-4 movie-card'>"
                     addHTML += "<h5>Title: " + data[i].title + "</h5><br>"
                     addHTML += "<h5>Director: " + data[i].director + "</h5><br>"
                     addHTML += "<h5>Rating: " + data[i].rating + "</h5><br>"
                     addHTML += "<h5>Genre: " + data[i].genre + "</h5><br>"
                     addHTML += "<h6>ID: " + data[i].id + "</h6><br>"
+                    addHTML += "<button class='delete-btn' value=" + data[i].id +">Delete</button>"
                     addHTML += "</div>"
                     addHTML += "<hr>"
                     $('#test-push').html(addHTML);
 
                 }
+                $('.delete-btn').click(function (e) {
+                    e.preventDefault();
+                    let id = $(e.target).val();
+                    deleteMovie(id);
+                    console.log(id);
+                })
 
             })
             .catch(error => console.error(error)) /* handle errors */
     }
+
 
     movieInputForm();
 
@@ -54,6 +62,7 @@
 
     function addMovie(e) {
         e.preventDefault();
+        confirm('Are you sure you want add this movie?')
 
         var newTitle = document.querySelector('#title')
         var newDirector = document.querySelector('#director')
@@ -76,7 +85,8 @@
 
         fetch(url)
             .then(response => response.json())
-            .then(() => movieInputForm()); {
+            .then(() => movieInputForm());
+        {
         }
     }
 
@@ -84,33 +94,18 @@
     addMovieBtn.addEventListener("click", addMovie);
 
 
-
     //Delete Movie Function
-    var selectedID = document.querySelector('#deleteMovie')
-    function deleteMovie(e){
-        e.preventDefault()
-        confirm("Are you sure to delete this " + selectedID.value);
+    // var selectedID = document.querySelector(movieInputForm.value);
+    function deleteMovie(id) {
+        confirm("Are you sure to delete this movie?");
 
-
-        const reviewObj = {
-        };
-        const url = 'https://glitter-furtive-transport.glitch.me/movies/'+ selectedID.value;
-        fetch(url, {
+        fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reviewObj),
         })
-        fetch(url)
-            .then( response => response.json() ) /* review was created successfully */
-            .then (() => movieInputForm()); {
-            }
+            .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+                .then(response => response.json())
+                .then(() => movieInputForm()));
     }
-    var deleteBtn = document.querySelector("#removeMovie");
-    deleteBtn.addEventListener("click", deleteMovie);
-
-
 })();
 
 
