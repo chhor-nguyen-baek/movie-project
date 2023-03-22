@@ -1,9 +1,13 @@
 (function () {
     "use strict"
-
+    window.addEventListener('load', function() {
+        // if (searchMovies !== ) {
+            return alert('Page is loading, please be patient.....');
+        // }
+    })
 
     function searchMovies() {
-        let loadingPage = alert("Loading please be patient....");
+        // let loadingPage = alert("Loading please be patient....");
         const searchInput = document.querySelector('#submit-title');
         const submitButton = document.querySelector('#submit-movie');
         const movieListContainer = document.querySelector('#test-push');
@@ -25,7 +29,7 @@
                     $('#test-push').html(addHTML);
 
                 }
-                return loadingPage;
+                // return loadingPage;
 
             })
             .catch(error => console.error(error)) /* handle errors */
@@ -52,7 +56,7 @@
             },
             body: JSON.stringify(newMovie),
         };
-        fetch('https://glitter-furtive-transport.glitch.me/movies', options)
+        fetch(url, options)
             .then(response => response.json())
             .then(function (newMovie) {
                 let movieList = newMovie.length;
@@ -75,7 +79,15 @@
     var addMovieBtn = document.getElementById("new-movie-btn");
     addMovieBtn.addEventListener("click", addMovie);
 
-
+    function deleteMovie(id) {
+        fetch('https://glitter-furtive-transport.glitch.me/movies' + id, {
+            method: "DELETE"
+        })
+            .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+                .then(response => response.json())
+                .then(() => searchMovies()))
+    }
+    deleteMovie()
 })();
 
 
