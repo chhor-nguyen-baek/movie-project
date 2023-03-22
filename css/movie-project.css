@@ -16,23 +16,18 @@
     transform: translate(-50%, -50%);
 }
 
-#movie-search {
-    margin: auto;
-
-    z-index: 9999;
-    position: absolute;
-    top: 40%;
-    left: 46%;
-    transform: translate(-50%, -50%);
+.new-movie-container {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#movie-search-btn {
-    margin: auto;
-    z-index: 9999;
-    position: absolute;
-    top: 40%;
-    left: 59%;
-    transform: translate(-50%, -50%);
+.new-movie {
+    width: 100%;
+}
+
+#new-movie-btn {
+    margin-top: .3em;
 }
 
 .header-container {
