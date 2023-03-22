@@ -39,17 +39,27 @@
     justify-content: space-around;
 }
 
+/*PAGE LOADER CSS*/
+#loader-container {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: auto;
+}
+
+
 #loader {
     display: block;
-    border: 20px solid #9b9b9b;
+    border: 20px solid #f1f1f1;
     border-radius: 50%;
-    border-top: 20px solid dodgerblue;
+    border-top: 20px solid #1739ff;
     width: 200px;
     height: 200px;
-    text-align: center;
-    margin-top: 500px;
-    font-size: 30px;
-    text-transform: uppercase;
+    position: absolute;
+    margin-top: 400px;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
     animation: spinner 4s linear infinite;
 }
 
@@ -59,7 +69,12 @@
 }
 
 #loading-screen {
-    position: fixed;
+    z-index: 9999;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 487px;
+    margin-left: 59px;
+    position: absolute;
 }
 
 #content {
