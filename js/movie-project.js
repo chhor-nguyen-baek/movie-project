@@ -126,8 +126,6 @@
                 })
                 .catch(error => console.error(error)) /* handle errors */
         }
-
-
         movieInputForm();
 
 
@@ -135,32 +133,37 @@
 
         function addMovie(e) {
             e.preventDefault();
-            confirm('Are you sure you want add this movie?')
+            let addConfirm = confirm('Are you sure you want add this movie?');
+            if(addConfirm === true ){
+                var newTitle = document.querySelector('#title')
+                var newDirector = document.querySelector('#director')
+                var newRating = document.querySelector('#rating')
+                var newGenre = document.querySelector('#genre')
+                const newMovie = {
+                    title: newTitle.value,
+                    director: newDirector.value,
+                    rating: newRating.value,
+                    genre: newGenre.value
+                };
+                const url = 'https://glitter-furtive-transport.glitch.me/movies';
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newMovie),
+                })
 
-            var newTitle = document.querySelector('#title')
-            var newDirector = document.querySelector('#director')
-            var newRating = document.querySelector('#rating')
-            var newGenre = document.querySelector('#genre')
-            const newMovie = {
-                title: newTitle.value,
-                director: newDirector.value,
-                rating: newRating.value,
-                genre: newGenre.value
-            };
-            const url = 'https://glitter-furtive-transport.glitch.me/movies';
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newMovie),
-            })
-
-            fetch(url)
-                .then(response => response.json())
-                .then(() => movieInputForm());
-            {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(() => movieInputForm());
+                {
+                }
+            } else {
+                alert("Well, No movie added. Thank you!")
             }
+
+
         }
 
         var addMovieBtn = document.getElementById("new-movie-btn");
