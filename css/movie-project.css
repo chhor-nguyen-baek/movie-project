@@ -1,36 +1,35 @@
 .header-container {
-    background-color: #333;
     padding: 20px;
+    position: relative;
+    height: 76vh;
 }
 
-#header-img {
-    width: 100%;
-    height: auto;
+body {
+    background-image: linear-gradient(180deg, #1e0085, rgba(232, 95, 25, 0.85), rgba(118, 38, 236, 0.85), #1e0085);
+
+}
+
+h5 {
+    padding-left: .3em;
 }
 
 #header-title {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    transform: translate(-50%, -50%)
+    text-align: center;
+    z-index: 99;
     font-size: 3rem;
     font-weight: bold;
     color: #fff;
-    text-shadow: 2px 2px #000;
+    text-shadow: 3px 3px #ff7000;
 }
 
-.new-movie-container {
-    background-color: Grey;
+#new-movie-form {
+    border: 2px solid #1e0085;
+    background-color: #ff8d2e;
     border-radius: 10px;
     padding: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    top: 40%;
-    left: 14%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    width: 50%;
+
+    z-index: 9999;
 }
 .new-movie {
     font-size: 16px;
@@ -42,7 +41,7 @@
 }
 
 #new-movie-btn {
-    background-color: #333;
+    background-color: #4f4848;
     color: white;
     border-radius: 5px;
     border: none;
@@ -70,13 +69,13 @@
 
 #loader {
     display: block;
-    border: 20px solid #f1f1f1;
+    border: 20px solid #ffffff;
     border-radius: 50%;
-    border-top: 20px solid #1739ff;
+    border-top: 20px solid #00ff15;
     width: 200px;
     height: 200px;
     position: absolute;
-    margin-top: 400px;
+    margin-top: 210px;
     top: 0;
     left: 0;
     opacity: 0.7;
@@ -92,9 +91,10 @@
     z-index: 9999;
     text-transform: uppercase;
     text-align: center;
-    margin-top: 487px;
+    margin-top: 300px;
     margin-left: 59px;
     position: absolute;
+    color: white;
 }
 
 #content {
@@ -104,11 +104,26 @@
 .movie-card {
     display: flex;
     justify-content: space-evenly;
+    background-color: #ff8d2e;
+    border: 2px solid #1e0085;
+
 }
 
 /* Style form labels and inputs */
 label {
     font-size: 18px;
     margin-right: 10px;
+}
+
+.delete-btn {
+    background-color: #4f4848;
+    color: white;
+
+}
+
+.edit-btn {
+    background-color: #4f4848;
+    color: white;
+
 }
 
