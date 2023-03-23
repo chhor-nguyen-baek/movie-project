@@ -170,14 +170,18 @@
         //Delete Movie Function
         // var selectedID = document.querySelector(movieInputForm.value);
         function deleteMovie(id) {
-            confirm("Are you sure to delete this movie?");
+            let deleteConfirm = confirm("Are you sure to delete this movie?");
+            if (deleteConfirm === true){
+                fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
+                    method: 'DELETE',
+                })
+                    .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+                        .then(response => response.json())
+                        .then(() => movieInputForm()));
+            } else {
+                alert("OKay! No movie has been deleted.")
+            }
 
-            fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
-                method: 'DELETE',
-            })
-                .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
-                    .then(response => response.json())
-                    .then(() => movieInputForm()));
         }
 
 //     FUNCTION TO EDIT MOVIES
