@@ -88,15 +88,38 @@
                                     });
 
                                 })
+                        console.log(id);
+                        fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
+                            })
+                            .then(response => response.json())
+                            .then(function (movieInfor){
+                                console.log(movieInfor.title);
+                                console.log(movieInfor.director);
+                                console.log(movieInfor.rating);
+                                console.log(movieInfor.genre);
 
+                                let formHTML = '';
 
+                                formHTML += '<div class="mb-3">'
+                                formHTML += '<label  class="form-label">Title: </label><br>'
+                                formHTML += '<input class="form-control" type="text" id="editMovie" placeholder="" value="' + movieInfor.title + '" disabled><br>'
+                                formHTML += '<label class="form-label">Director: </label><br>'
+                                formHTML += '<input class="form-control" type="text" id="editDirector" placeholder="" value="' + movieInfor.director + '"><br>'
+                                formHTML += '<label class="form-label">Rating: </label><br>'
+                                formHTML += '<input class="form-control" type="text" id="editRating" placeholder="" value="' + movieInfor.rating + '"><br>'
+                                formHTML += '<label class="form-label">Genre: </label><br>'
+                                formHTML += '<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="=" value="' + movieInfor.genre + '"><br>'
+                                formHTML += '<button class="btn btn-primary" type="submit" id="saveBtn">Save</button><br>'
+                                formHTML += '</div>'
+                                $('#test-push').html(formHTML);
 
+                                $("#saveBtn").click(function (e) {
+                                    e.preventDefault();
+                                    console.log(id)
+                                    editMovie(id);
+                                });
 
-
-
-
-
-
+                            })
                         }
                     )
 
@@ -147,14 +170,18 @@
         //Delete Movie Function
         // var selectedID = document.querySelector(movieInputForm.value);
         function deleteMovie(id) {
-            confirm("Are you sure to delete this movie?");
+            let deleteConfirm = confirm("Are you sure to delete this movie?");
+            if (deleteConfirm === true){
+                fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
+                    method: 'DELETE',
+                })
+                    .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+                        .then(response => response.json())
+                        .then(() => movieInputForm()));
+            } else {
+                alert("OKay! No movie has been deleted.")
+            }
 
-            fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
-                method: 'DELETE',
-            })
-                .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
-                    .then(response => response.json())
-                    .then(() => movieInputForm()));
         }
 
 //     FUNCTION TO EDIT MOVIES
