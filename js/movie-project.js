@@ -13,7 +13,7 @@
             loadingCircle.style.display = 'none';
             loadingScreen.style.display = 'none';
             htmlContent.style.display = 'block';
-        }, 1000)
+        }, 3000)
     }
 
 
@@ -31,12 +31,14 @@
                 const url = 'https://glitter-furtive-transport.glitch.me/movies/';
                 var addHTML = "";
                 for (let i = 0; i < movieList; i++) {
-                    addHTML += "<div class='card col-lg-6 my-3 mx-2 movie-card p-3' style='width: 300px; background-color: rgba(179,167,98,0.36)'>"
-                    addHTML += "<p><h5>Title: </h5>" + data[i].title + "</p><br>"
+                    addHTML += "<div class='w-25 card col-6 my-3 mx-2 movie-card'>"
+                    addHTML += "<h5>Title: " + data[i].title + "</h5><br>"
                     addHTML += "<h5>Director: " + data[i].director + "</h5><br>"
                     addHTML += "<h5>Rating: " + data[i].rating + "</h5><br>"
                     addHTML += "<h5>Genre: " + data[i].genre + "</h5><br>"
-                    addHTML += "<button class='delete-btn' value=" + data[i].id +">Delete</button>"
+                    addHTML += "<button class='delete-btn' value=" + data[i].id + ">Delete</button>"
+                    addHTML += "<button class='edit-btn' value=" + data[i].id + ">Edit</button>"
+
                     addHTML += "</div>"
                     addHTML += "<hr>"
                     $('#test-push').html(addHTML);
@@ -48,64 +50,122 @@
                     deleteMovie(id);
                     console.log(id);
                 })
+                $('.edit-btn').click(function (e) {
+                    e.preventDefault();
+                    let id = $(e.target).val();
+                    console.log(id);
+                    let formHTML = '';
+                        formHTML += '<div class="mb-3">'
+                        formHTML += '<label  class="form-label">Title: </label><br>'
+                        formHTML += '<input class="form-control" type="text" id="editMovie" placeholder="" value="' + id.title + '" disabled><br>'
+                        formHTML += '<label class="form-label">Director: </label><br>'
+                        formHTML += '<input class="form-control" type="text" id="editDirector" placeholder="" value="' + id.director + '"><br>'
+                        formHTML += '<label class="form-label">Rating: </label><br>'
+                        formHTML += '<input class="form-control" type="text" id="editRating" placeholder="" value="' + id.rating + '"><br>'
+                        formHTML += '<label class="form-label">Genre: </label><br>'
+                        formHTML += '<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="=" value="' + id.genre + '"><br>'
+                        formHTML += '<button class="btn btn-primary" type="submit" id="saveBtn">Save</button><br>'
+                        formHTML += '</div>'
+                        $('#test-push').html(formHTML);
 
+                        $("#saveBtn").click(function (e) {
+                            e.preventDefault();
+                            console.log(id)
+                            editMovie(id);
+                        });
+
+
+                        // // edit close button
+                        // $("#editBtn").click(function (e) {
+                        //     e.preventDefault();
+                        // })
+
+                    }
+                )
+
+                })
+                    .catch(error => console.error(error)) /* handle errors */
+            }
+
+
+        movieInputForm();
+
+
+        // FUNCTION TO ADD A MOVIE
+
+        function addMovie(e) {
+            e.preventDefault();
+            confirm('Are you sure you want add this movie?')
+
+            var newTitle = document.querySelector('#title')
+            var newDirector = document.querySelector('#director')
+            var newRating = document.querySelector('#rating')
+            var newGenre = document.querySelector('#genre')
+            const newMovie = {
+                title: newTitle.value,
+                director: newDirector.value,
+                rating: newRating.value,
+                genre: newGenre.value
+            };
+            const url = 'https://glitter-furtive-transport.glitch.me/movies';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newMovie),
             })
-            .catch(error => console.error(error)) /* handle errors */
-    }
 
-
-    movieInputForm();
-
-
-    // FUNCTION TO ADD A MOVIE
-
-    function addMovie(e) {
-        e.preventDefault();
-        confirm('Are you sure you want add this movie?')
-
-        var newTitle = document.querySelector('#title')
-        var newDirector = document.querySelector('#director')
-        var newRating = document.querySelector('#rating')
-        var newGenre = document.querySelector('#genre')
-        const newMovie = {
-            title: newTitle.value,
-            director: newDirector.value,
-            rating: newRating.value,
-            genre: newGenre.value
-        };
-        const url = 'https://glitter-furtive-transport.glitch.me/movies';
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newMovie),
-        })
-
-        fetch(url)
-            .then(response => response.json())
-            .then(() => movieInputForm());
-        {
-        }
-    }
-
-    var addMovieBtn = document.getElementById("new-movie-btn");
-    addMovieBtn.addEventListener("click", addMovie);
-
-
-    //Delete Movie Function
-    // var selectedID = document.querySelector(movieInputForm.value);
-    function deleteMovie(id) {
-        confirm("Are you sure to delete this movie?");
-
-        fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
-            method: 'DELETE',
-        })
-            .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+            fetch(url)
                 .then(response => response.json())
-                .then(() => movieInputForm()));
+                .then(() => movieInputForm());
+            {
+            }
+        }
+
+        var addMovieBtn = document.getElementById("new-movie-btn");
+        addMovieBtn.addEventListener("click", addMovie);
+
+
+        //Delete Movie Function
+        // var selectedID = document.querySelector(movieInputForm.value);
+        function deleteMovie(id) {
+            confirm("Are you sure to delete this movie?");
+
+            fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
+                method: 'DELETE',
+            })
+                .then(() => fetch('https://glitter-furtive-transport.glitch.me/movies')
+                    .then(response => response.json())
+                    .then(() => movieInputForm()));
+        }
+
+//     FUNCTION TO EDIT MOVIES
+
+        function editMovie(id) {
+            let editedMovie = {
+                title: $("#editTitle").val(),
+                director: $("#editDirector").val(),
+                genre: $("#editGenre").val(),
+                rating: $("#editRating").val(),
+                description: $("#editDescription").val()
+            }
+
+
+            fetch('https://glitter-furtive-transport.glitch.me/movies/' + id, {
+                method: "PATCH",
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(editedMovie)
+            }).then(response => {
+                return response.json();
+            }).then(data => console.log(data))
+                .then(() => movieInputForm());
+        }
+
     }
-})();
+
+)
+    ();
 
 
 
