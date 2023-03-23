@@ -1,15 +1,17 @@
+body {
+    background-color: #757575;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*HEADER INFO*/
+
 .header-container {
     padding: 20px;
     position: relative;
     height: 76vh;
-}
-
-body {
-background-color: #757575;
-}
-
-h5 {
-    padding-left: .3em;
 }
 
 #header-title {
@@ -20,6 +22,8 @@ h5 {
     color: #fff;
     text-shadow: 3px 3px #c9bf00;
 }
+
+/*CSS FOR FORM*/
 
 #new-movie-form {
     border: 1px solid #fff420;
@@ -54,10 +58,26 @@ h5 {
     background-color: #555;
 }
 
+/*CARDS FOR MOVIES*/
+
 #test-push {
     margin: .7em;
     justify-content: space-around;
 }
+
+.movie-card {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #525252;
+    border: 1px solid #fff420;
+    color: white;
+}
+
+h5 {
+    padding-left: .3em;
+}
+
+/*LOADING CONTENT FOR DISPLAY AND BLOCK*/
 
 #loader-container {
     width: 150px;
@@ -100,14 +120,6 @@ h5 {
     display: none;
 }
 
-.movie-card {
-    display: flex;
-    justify-content: space-evenly;
-    background-color: #525252;
-    border: 1px solid #fff420;
-    color: white;
-
-}
 
 /* Style form labels and inputs */
 label {
@@ -115,15 +127,15 @@ label {
     margin-right: 10px;
 }
 
+/*EDIT AND DELETE BTNS*/
+
 .delete-btn {
     background-color: #4f4848;
     color: white;
-
 }
 
 .edit-btn {
     background-color: #4f4848;
     color: white;
-
 }
 
