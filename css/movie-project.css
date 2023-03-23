@@ -18,11 +18,11 @@ h5 {
     font-size: 3rem;
     font-weight: bold;
     color: #fff;
-    text-shadow: 3px 3px #8f8700;
+    text-shadow: 3px 3px #c9bf00;
 }
 
 #new-movie-form {
-    border: 2px solid #fff420;
+    border: 1px solid #fff420;
     background-color: #525252;
     border-radius: 10px;
     padding: 20px;
@@ -104,7 +104,7 @@ h5 {
     display: flex;
     justify-content: space-evenly;
     background-color: #525252;
-    border: 2px solid #fff420;
+    border: 1px solid #fff420;
     color: white;
 
 }
