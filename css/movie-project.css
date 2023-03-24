@@ -1,9 +1,48 @@
 body {
-    background-color: #757575;
+    background-color: rgb(12, 24, 49);
 }
 
 * {
     box-sizing: border-box;
+}
+
+
+
+/*MOUSE ANIMATION*/
+
+#mouse-blob {
+    background-color: white;
+    height: 300px;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background-image:  linear-gradient(to right, #2828f6, #5d5dff, blueviolet);
+    animation: rotate 20s infinite;
+    filter: blur(200px);
+}
+
+#blur-bob {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    backdrop-filter: blur(200px);
+
+}
+
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+    50% {
+        scale: 1 1.35;
+    }
+    to {
+        rotate: 360deg;
+    }
 }
 
 /*HEADER INFO*/
@@ -20,14 +59,14 @@ body {
     font-size: 3rem;
     font-weight: bold;
     color: #fff;
-    text-shadow: 3px 3px #c9bf00;
+    text-shadow: 3px 3px #5313ff;
 }
 
 /*CSS FOR FORM*/
 
 #new-movie-form {
-    border: 1px solid #fff420;
-    background-color: #525252;
+    border: 1px solid #ffffff;
+    background-image: url("/img/space-form.jpeg")    ;
     border-radius: 10px;
     padding: 20px;
     width: 50%;
@@ -44,7 +83,7 @@ body {
 }
 
 #new-movie-btn {
-    background-color: #444;
+    background-image: url("/img/space-form-btn.jpeg");
     color: white;
     border-radius: 5px;
     border: none;
@@ -68,8 +107,8 @@ body {
 .movie-card {
     display: flex;
     justify-content: space-evenly;
-    background-color: #525252;
-    border: 1px solid #fff420;
+    background-image: url("/img/space-card.jpeg");
+    border: 1px solid #ffffff;
     color: white;
 }
 
@@ -90,7 +129,7 @@ h5 {
     display: block;
     border: 20px solid #ffffff;
     border-radius: 50%;
-    border-top: 20px solid #00ff15;
+    border-top: 20px solid #6b35fd;
     width: 200px;
     height: 200px;
     position: absolute;
@@ -130,12 +169,16 @@ label {
 /*EDIT AND DELETE BTNS*/
 
 .delete-btn {
-    background-color: #4f4848;
     color: white;
+    background-image: url("/img/space-btn.jpeg");
+    border: 1px solid gray;
+    border-radius: 3%;
 }
 
 .edit-btn {
-    background-color: #4f4848;
+    background-image: url("/img/space-btn.jpeg");
     color: white;
+    border: 1px solid gray;
+    border-radius: 3%;
 }
 
