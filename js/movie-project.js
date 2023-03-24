@@ -14,7 +14,7 @@
                 loadingCircle.style.display = 'none';
                 loadingScreen.style.display = 'none';
                 htmlContent.style.display = 'block';
-            }, 3000)
+            }, 4000)
         }
 
 
@@ -69,14 +69,14 @@
                                     let formHTML = '';
 
                                     formHTML += '<div class="mb-3">'
-                                    formHTML += '<label  class="form-label">Title: </label><br>'
+                                    formHTML += '<label  class="form-label text-white">Title: </label><br>'
                                     formHTML += '<input class="form-control" type="text" id="editMovie" placeholder="" value="' + movieInfor.title + '" disabled><br>'
-                                    formHTML += '<label class="form-label">Director: </label><br>'
+                                    formHTML += '<label class="form-label text-white">Director: </label><br>'
                                     formHTML += '<input class="form-control" type="text" id="editDirector" placeholder="" value="' + movieInfor.director + '"><br>'
-                                    formHTML += '<label class="form-label">Rating: </label><br>'
+                                    formHTML += '<label class="form-label text-white">Rating: </label><br>'
                                     formHTML += '<input class="form-control" type="text" id="editRating" placeholder="" value="' + movieInfor.rating + '"><br>'
-                                    formHTML += '<label class="form-label">Genre: </label><br>'
-                                    formHTML += '<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="=" value="' + movieInfor.genre + '"><br>'
+                                    formHTML += '<label class="form-label  text-white">Genre: </label><br>'
+                                    formHTML += '<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="" value="' + movieInfor.genre + '"><br>'
                                     formHTML += '<button class="btn btn-primary" type="submit" id="saveBtn">Save</button><br>'
                                     formHTML += '</div>'
                                     $('#test-push').html(formHTML);
@@ -101,14 +101,14 @@
                                 let formHTML = '';
 
                                 formHTML += '<div class="mb-3">'
-                                formHTML += '<label  class="form-label">Title: </label><br>'
+                                formHTML += '<label  class="form-label  text-white">Title: </label><br>'
                                 formHTML += '<input class="form-control" type="text" id="editMovie" placeholder="" value="' + movieInfor.title + '" disabled><br>'
-                                formHTML += '<label class="form-label">Director: </label><br>'
+                                formHTML += '<label class="form-label  text-white">Director: </label><br>'
                                 formHTML += '<input class="form-control" type="text" id="editDirector" placeholder="" value="' + movieInfor.director + '"><br>'
-                                formHTML += '<label class="form-label">Rating: </label><br>'
+                                formHTML += '<label class="form-label  text-white">Rating: </label><br>'
                                 formHTML += '<input class="form-control" type="text" id="editRating" placeholder="" value="' + movieInfor.rating + '"><br>'
-                                formHTML += '<label class="form-label">Genre: </label><br>'
-                                formHTML += '<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="=" value="' + movieInfor.genre + '"><br>'
+                                formHTML += '<label class="form-label  text-white">Genre: </label><br>'
+                                formHTML += '<input class="form-control form-control-sm" id="editGenre" type="text" placeholder="" value="' + movieInfor.genre + '"><br>'
                                 formHTML += '<button class="btn btn-primary" type="submit" id="saveBtn">Save</button><br>'
                                 formHTML += '</div>'
                                 $('#test-push').html(formHTML);
@@ -208,8 +208,15 @@
             }).then(data => console.log(data))
                 .then(() => movieInputForm());
         }
+        const blob = document.getElementById('mouse-blob');
 
-    }
+        document.body.onpointermove = event => {
+            const { clientX, clientY } = event;
+            blob.animate({
+                left: `${clientX}px`,
+                top: `${clientY}px`
+            }, { duration: 2000, fill: "forwards"});
+        }
 
-)
-();
+
+})();
